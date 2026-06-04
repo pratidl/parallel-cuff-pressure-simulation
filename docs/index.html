@@ -2,7 +2,9 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Simulasi Pemrosesan Sinyal Tekanan Cuff Secara Paralel</title>
+
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -18,6 +20,15 @@
       color: #1f4e79;
     }
 
+    h1 {
+      margin-bottom: 10px;
+    }
+
+    .subtitle {
+      margin-top: 0;
+      color: #555;
+    }
+
     .card {
       background: white;
       padding: 20px;
@@ -31,6 +42,7 @@
       max-width: 800px;
       border-radius: 8px;
       border: 1px solid #ddd;
+      margin-top: 10px;
     }
 
     code {
@@ -38,18 +50,35 @@
       padding: 2px 5px;
       border-radius: 4px;
     }
+
+    ul, ol {
+      padding-left: 22px;
+    }
+
+    .footer {
+      text-align: center;
+      color: #666;
+      font-size: 14px;
+      margin-top: 30px;
+    }
   </style>
 </head>
+
 <body>
 
   <h1>Simulasi Pemrosesan Sinyal Tekanan Cuff Secara Paralel</h1>
+  <p class="subtitle">Mini Project Evaluasi 3 Komputasi Paralel</p>
 
   <div class="card">
     <h2>Gambaran Project</h2>
     <p>
       Project ini merupakan simulasi pemrosesan sinyal tekanan cuff menggunakan Python.
-      Program membuat data tekanan sintetis, kemudian memproses data tersebut menggunakan
-      metode serial dan metode paralel.
+      Program membuat data tekanan sintetis yang terinspirasi dari sistem pengukuran
+      tekanan darah, lalu data tersebut diproses menggunakan metode serial dan metode paralel.
+    </p>
+    <p>
+      Tujuan project ini adalah menunjukkan penerapan konsep komputasi paralel
+      pada proses pengolahan data sinyal.
     </p>
   </div>
 
@@ -57,61 +86,98 @@
     <h2>Latar Belakang</h2>
     <p>
       Dalam sistem pengukuran tekanan darah, data tekanan dari cuff dapat diproses
-      untuk menganalisis pola sinyal. Jika jumlah data cukup besar, komputasi paralel
-      dapat digunakan untuk membagi beban kerja menjadi beberapa bagian kecil agar
-      dapat diproses secara bersamaan.
+      untuk menganalisis pola sinyal. Jika jumlah data yang diproses cukup besar,
+      komputasi paralel dapat digunakan untuk membagi beban kerja menjadi beberapa
+      bagian kecil agar proses pengolahan data dapat dilakukan secara bersamaan.
     </p>
     <p>
       Project ini terinspirasi dari konsep CuffnCode, tetapi hanya berfokus pada
-      logic code dan simulasi pemrosesan data.
+      bagian logic code dan simulasi pemrosesan data.
     </p>
   </div>
 
   <div class="card">
     <h2>Konsep Komputasi Paralel</h2>
     <p>
-      Data dibagi menjadi beberapa bagian berdasarkan jumlah core CPU yang tersedia.
-      Setiap bagian data diproses oleh proses yang berbeda menggunakan multiprocessing
-      pada Python. Setelah semua bagian selesai diproses, hasilnya digabungkan menjadi
-      satu hasil akhir.
+      Pada metode paralel, data dibagi menjadi beberapa bagian berdasarkan jumlah
+      core CPU yang tersedia. Setiap bagian data diproses oleh proses yang berbeda
+      menggunakan library <code>multiprocessing</code> pada Python.
+    </p>
+    <p>
+      Setelah semua bagian data selesai diproses, hasil dari setiap proses digabungkan
+      menjadi satu hasil akhir. Hasil waktu eksekusi metode serial dan paralel kemudian
+      dibandingkan untuk melihat perbedaan performanya.
     </p>
   </div>
 
   <div class="card">
     <h2>Alur Sistem</h2>
     <ol>
-      <li>Membuat sinyal tekanan cuff sintetis</li>
-      <li>Menambahkan osilasi dan noise pada sinyal</li>
-      <li>Memproses data menggunakan metode serial</li>
-      <li>Memproses data menggunakan metode paralel</li>
-      <li>Membandingkan waktu eksekusi</li>
-      <li>Membuat grafik hasil pengujian</li>
+      <li>Membuat sinyal tekanan cuff sintetis.</li>
+      <li>Menambahkan osilasi dan noise pada sinyal.</li>
+      <li>Memproses data menggunakan metode serial.</li>
+      <li>Memproses data menggunakan metode paralel.</li>
+      <li>Membandingkan waktu eksekusi serial dan paralel.</li>
+      <li>Membuat grafik sinyal tekanan dan grafik perbandingan runtime.</li>
     </ol>
   </div>
 
   <div class="card">
     <h2>Implementasi</h2>
     <p>
-      Program dibuat menggunakan Python, NumPy, Matplotlib, dan multiprocessing.
-      NumPy digunakan untuk pengolahan data, Matplotlib digunakan untuk visualisasi,
-      dan multiprocessing digunakan untuk menjalankan komputasi paralel.
+      Program dibuat menggunakan Python dengan beberapa library pendukung.
+      <code>NumPy</code> digunakan untuk pengolahan data numerik,
+      <code>Matplotlib</code> digunakan untuk membuat grafik,
+      dan <code>multiprocessing</code> digunakan untuk menjalankan proses komputasi paralel.
     </p>
   </div>
 
   <div class="card">
+    <h2>Fitur Program</h2>
+    <ul>
+      <li>Membuat simulasi sinyal tekanan cuff.</li>
+      <li>Menambahkan noise pada data sinyal.</li>
+      <li>Melakukan smoothing menggunakan moving average.</li>
+      <li>Memproses data secara serial.</li>
+      <li>Memproses data secara paralel.</li>
+      <li>Menghitung waktu eksekusi kedua metode.</li>
+      <li>Menampilkan nilai speedup.</li>
+      <li>Membuat visualisasi hasil pengujian.</li>
+    </ul>
+  </div>
+
+  <div class="card">
     <h2>Output Sinyal Tekanan</h2>
-    <img src="../assets/pressure_signal.png" alt="Grafik Sinyal Tekanan">
+    <p>
+      Grafik berikut menampilkan contoh sinyal tekanan cuff sintetis yang digunakan
+      sebagai data input dalam simulasi.
+    </p>
+    <img src="assets/pressure_signal.png" alt="Grafik Sinyal Tekanan">
   </div>
 
   <div class="card">
     <h2>Perbandingan Waktu Eksekusi</h2>
-    <img src="../assets/runtime_comparison.png" alt="Grafik Perbandingan Runtime">
+    <p>
+      Grafik berikut menunjukkan perbandingan waktu eksekusi antara metode serial
+      dan metode paralel.
+    </p>
+    <img src="assets/runtime_comparison.png" alt="Grafik Perbandingan Runtime">
+  </div>
+
+  <div class="card">
+    <h2>Hasil Pengujian</h2>
+    <p>
+      Hasil pengujian menunjukkan bahwa data sinyal dapat dibagi menjadi beberapa
+      bagian kecil untuk diproses secara paralel. Perbandingan waktu eksekusi
+      digunakan untuk melihat pengaruh pembagian beban kerja terhadap proses
+      pemrosesan data.
+    </p>
   </div>
 
   <div class="card">
     <h2>Kesimpulan</h2>
     <p>
-      Project ini menunjukkan bahwa komputasi paralel dapat diterapkan pada proses
+      Project ini menunjukkan bahwa konsep komputasi paralel dapat diterapkan pada
       pemrosesan data sinyal. Dengan membagi data menjadi beberapa bagian, proses
       komputasi dapat dilakukan secara bersamaan menggunakan beberapa core CPU.
     </p>
@@ -121,9 +187,23 @@
     <h2>Mahasiswa</h2>
     <p>
       Nama: Pratama Idola Tua<br>
-      NRP: 152024116
+      NRP: 152024116<br>
+      Mata Kuliah: IFB-206 Komputasi Paralel
     </p>
   </div>
+
+  <div class="card">
+    <h2>Referensi</h2>
+    <ul>
+      <li>CuffnCode GitHub Repository</li>
+      <li>CuffnCode Documentation</li>
+      <li>Python multiprocessing documentation</li>
+    </ul>
+  </div>
+
+  <p class="footer">
+    Parallel Cuff Pressure Signal Processing Simulation
+  </p>
 
 </body>
 </html>
